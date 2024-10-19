@@ -1,0 +1,56 @@
+<html>
+  <head>
+    <title>TO-Do list</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h1><i>Things to do</i></h1>
+    <div>
+      <input type="text" id="input" />
+      <button onclick="addToDo()">Add</button>
+    </div>
+  </body>
+
+  <script>
+    function addToDo() {
+      //Selected the input value
+      const inputValue = document.querySelector("input");
+      const value = inputValue.value;
+
+      //created an new tag
+      const newli = document.createElement("li");
+      newli.innerHTML = value;
+      newli.style.fontStyle = "italic";
+
+      const deleteButton = document.createElement("button");
+
+      const checkBox = document.createElement("input");
+      checkBox.type = "checkbox";
+      checkBox.addEventListener("click", function () {
+        if (checkBox.checked) {
+          newli.style.textDecoration = "line-through";
+        } else {
+          newli.style.textDecoration = "none";
+        }
+      });
+
+      // Set the button's text and class
+      deleteButton.textContent = "delete";
+      deleteButton.className = "delete";
+      deleteButton.addEventListener("click", function () {
+        newli.remove();
+      });
+
+      //attaching the input value to new div
+
+      //appending the created element
+      newli.appendChild(checkBox);
+      newli.appendChild(deleteButton);
+
+      // Append the new <li> to the <ul>
+      document.querySelector("body").appendChild(newli);
+
+      inputValue.value = "";
+    }
+  </script>
+</html>
